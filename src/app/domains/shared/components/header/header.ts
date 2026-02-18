@@ -1,5 +1,10 @@
-import { Component, Input, signal, WritableSignal } from '@angular/core';
-import { ProductModel } from '../../../products/models/product.model';
+import {
+  Component,
+  Input,
+  signal,
+  SimpleChanges,
+  WritableSignal,
+} from '@angular/core';
 import { ProductCartModel } from '../model/productCart.model';
 @Component({
   selector: 'app-header',
@@ -9,9 +14,21 @@ import { ProductCartModel } from '../model/productCart.model';
 })
 export class Header {
   @Input({ required: true }) productsCartData: ProductCartModel[] = [];
+  cartTotal: WritableSignal<number> = signal(0);
   isSideMenuVisible: WritableSignal<boolean> = signal(true);
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['productsCartData']) {
+      this.cartTotal.set(this.getTotalPrice());
+    }
+  }
   toggleSideMenu(): void {
     this.isSideMenuVisible.update((previous: boolean) => !previous);
+
+    if (!this.isSideMenuVisible()) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
   }
   getTotalPrice(): number {
     return this.productsCartData
