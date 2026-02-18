@@ -1,6 +1,6 @@
 <div class="container mx-auto">
   <app-header [productsCartData]="cartProducts()"/>
-  <div class="grid grid-cols-4 gap-6 my-4">
+  <div class="grid grid-cols-4 gap-6 my-4 mx-2 pt-4">
     @for (product of products(); track product.id) {
       <app-product [product]="product" (addToCart)="addToCart(product)" />
     }
