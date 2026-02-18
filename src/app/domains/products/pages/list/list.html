@@ -1,0 +1,9 @@
+<div class="container mx-auto">
+  <app-header [productsCartData]="cartProducts()"/>
+  <div class="grid grid-cols-4 gap-6 my-4">
+    @for (product of products(); track product.id) {
+      <app-product [product]="product" (addToCart)="addToCart(product)" />
+    }
+  </div>
+  <p class="flex justify-center m-6">{{ text() }}</p>
+</div>
