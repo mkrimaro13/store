@@ -15,7 +15,7 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
-      "@shared/*":["src/app/domains/shared/*"],
+      "@shared/*":["./src/app/domains/shared/*"],
       "@products/*":["./src/app/domains/products/*"],
       "@info/*":["./src/app/domains/info/*"],
       "@customers/*":["./src/app/domains/customers/*"],
