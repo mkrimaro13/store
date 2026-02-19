@@ -1,11 +1,6 @@
-import {
-  Component,
-  Input,
-  signal,
-  SimpleChanges,
-  WritableSignal,
-} from '@angular/core';
+import { Component, inject, Signal, signal, WritableSignal } from '@angular/core';
 import { ProductCartModel } from '../model/productCart.model';
+import { Cart } from '../../services/cart';
 @Component({
   selector: 'app-header',
   imports: [],
@@ -13,14 +8,10 @@ import { ProductCartModel } from '../model/productCart.model';
   styleUrl: './header.css',
 })
 export class Header {
-  @Input({ required: true }) productsCartData: ProductCartModel[] = [];
-  cartTotal: WritableSignal<number> = signal(0);
+  private cartService = inject(Cart);
+  cart: WritableSignal<ProductCartModel[]> = this.cartService.cart;
+  total: Signal<number> = this.cartService.total;
   isSideMenuVisible: WritableSignal<boolean> = signal(true);
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['productsCartData']) {
-      this.cartTotal.set(this.getTotalPrice());
-    }
-  }
   toggleSideMenu(): void {
     this.isSideMenuVisible.update((previous: boolean) => !previous);
 
@@ -30,14 +21,7 @@ export class Header {
       document.body.classList.remove('overflow-hidden');
     }
   }
-  getTotalPrice(): number {
-    return this.productsCartData
-      .map((p) => p.product.price * p.quantity)
-      .reduce((prev, current) => prev + current, 0);
-  }
-  removeFromCart(id: number): void {
-    this.productsCartData = this.productsCartData
-      .map((p) => (p.product.id === id ? { ...p, quantity: p.quantity - 1 } : p))
-      .filter((p) => p.quantity > 0);
+  removeFromCart(id: number) {
+    this.cartService.removeFromCart(id);
   }
 }

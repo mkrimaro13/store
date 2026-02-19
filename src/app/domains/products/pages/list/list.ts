@@ -1,8 +1,9 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { Product } from '../../components/product/product';
 import { Header } from '../../../shared/components/header/header';
 import { ProductModel } from '../../models/product.model';
 import { ProductCartModel } from '../../../shared/components/model/productCart.model';
+import { Cart } from '../../../shared/services/cart';
 
 @Component({
   selector: 'app-list',
@@ -11,8 +12,8 @@ import { ProductCartModel } from '../../../shared/components/model/productCart.m
   styleUrl: './list.css',
 })
 export class List {
+  private cartService = inject(Cart);
   products: WritableSignal<ProductModel[]> = signal<ProductModel[]>([]);
-  cartProducts: WritableSignal<ProductCartModel[]> = signal<ProductCartModel[]>([]);
 
   ngOnInit() {
     const initialProducts: ProductModel[] = [
@@ -115,31 +116,8 @@ export class List {
     ];
     this.products.set(initialProducts);
   }
-  text: WritableSignal<string> = signal('');
-  fromChild(event: string) {
-    console.log(event);
-    this.text.update((text) => event);
-  }
   addToCart(product: ProductModel) {
-    this.cartProducts.update((previousList: ProductCartModel[]) => {
-      // 1️⃣ Si la lista está vacía → agregar producto
-      if (previousList.length === 0) {
-        return [{ product, quantity: 1 }];
-      }
-
-      // 2️⃣ Buscar si el producto ya existe (mejor comparar por id)
-      const existingProduct = previousList.find((p) => p.product.id === product.id);
-
-      // 3️⃣ Si existe → aumentar cantidad
-      if (existingProduct) {
-        return previousList.map((p) =>
-          p.product.id === product.id ? { ...p, quantity: p.quantity + 1 } : p,
-        );
-      }
-
-      // 4️⃣ Si no existe → agregarlo con quantity 1
-      return [...previousList, { product, quantity: 1 }];
-    });
+    console.log('adding product')
+    this.cartService.addToCart(product);
   }
-
 }
