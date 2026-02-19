@@ -1,6 +1,6 @@
 import { computed, Injectable, signal, WritableSignal } from '@angular/core';
-import { ProductCartModel } from '../components/model/productCart.model';
-import { ProductModel } from '../../products/models/product.model';
+import { ProductCartModel } from '@shared/components/model/productCart.model';
+import { ProductModel } from '@products/models/product.model';
 
 @Injectable({
   providedIn: 'root',

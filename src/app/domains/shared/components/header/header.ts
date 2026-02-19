@@ -1,6 +1,6 @@
 import { Component, inject, Signal, signal, WritableSignal } from '@angular/core';
-import { ProductCartModel } from '../model/productCart.model';
-import { Cart } from '../../services/cart';
+import { ProductCartModel } from '@shared/components/model/productCart.model';
+import { Cart } from '@shared/services/cart';
 @Component({
   selector: 'app-header',
   imports: [],

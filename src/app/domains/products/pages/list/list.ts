@@ -1,10 +1,9 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
-import { Product } from '../../components/product/product';
-import { Header } from '../../../shared/components/header/header';
-import { ProductModel } from '../../models/product.model';
-import { ProductCartModel } from '../../../shared/components/model/productCart.model';
-import { Cart } from '../../../shared/services/cart';
-import { Products } from '../../../shared/services/products';
+import { Product } from '@products/components/product/product';
+import { Header } from '@shared/components/header/header';
+import { ProductModel } from '@products/models/product.model';
+import { Cart } from '@shared/services/cart';
+import { Products } from '@shared/services/products';
 
 @Component({
   selector: 'app-list',
