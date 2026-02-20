@@ -7,5 +7,6 @@ export interface ProductModel{
   price: number,
   description: string,
   category: CategoryModel,
-  images: string[];
+  images: string[],
+  creationAt: Date;
 }
