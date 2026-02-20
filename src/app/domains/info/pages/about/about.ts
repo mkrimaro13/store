@@ -5,7 +5,7 @@ import { Counter } from '../../../shared/components/counter/counter';
   selector: 'app-about',
   imports: [Counter],
   templateUrl: './about.html',
-  styleUrl: './about.css',
+  //styleUrl: './about.css',
 })
 export class About {
   duration: WritableSignal<number> = signal(15);

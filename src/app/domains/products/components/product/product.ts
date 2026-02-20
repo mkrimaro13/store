@@ -5,7 +5,7 @@ import { ProductModel } from '@products/models/product.model';
   selector: 'app-product',
   imports: [],
   templateUrl: './product.html',
-  styleUrl: './product.css',
+  //styleUrl: './product.css',
 })
 export class Product {
   @Input({required:true}) product!: ProductModel;

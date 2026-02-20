@@ -9,7 +9,7 @@ import { Products } from '@shared/services/products';
   selector: 'app-list',
   imports: [Product, Header],
   templateUrl: './list.html',
-  styleUrl: './list.css',
+  //styleUrl: './list.css',
 })
 export class List {
   private cartService = inject(Cart);

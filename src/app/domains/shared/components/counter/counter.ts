@@ -11,7 +11,7 @@ import {
   selector: 'app-counter',
   imports: [],
   templateUrl: './counter.html',
-  styleUrl: './counter.css',
+  //styleUrl: './counter.css',
 })
 export class Counter {
   @Input({ required: true }) duration: number = 0;

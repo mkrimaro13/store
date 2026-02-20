@@ -5,7 +5,7 @@ import { Cart } from '@shared/services/cart';
   selector: 'app-header',
   imports: [],
   templateUrl: './header.html',
-  styleUrl: './header.css',
+  //styleUrl: './header.css',
 })
 export class Header {
   private cartService = inject(Cart);
