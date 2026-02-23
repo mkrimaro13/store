@@ -1,9 +1,10 @@
 import { Component, signal, WritableSignal } from '@angular/core';
 import { Counter } from '../../../shared/components/counter/counter';
+import { Highlight } from "@shared/directives/highlight";
 
 @Component({
   selector: 'app-about',
-  imports: [Counter],
+  imports: [Counter, Highlight],
   templateUrl: './about.html',
   //styleUrl: './about.css',
 })
