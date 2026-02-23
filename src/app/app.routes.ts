@@ -9,11 +9,15 @@ export const routes: Routes = [
     component: List,
   },
   {
-    path:'about',
-    component: About
+    path: 'about',
+    component: About,
   },
   {
-    path:'**',
+    path: '404',
     component: NotFound
-  }
+  },
+  {
+    path: '**',
+    redirectTo: '404',
+  },
 ];
