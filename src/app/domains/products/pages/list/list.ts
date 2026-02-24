@@ -1,32 +1,56 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, Input, signal, SimpleChanges, WritableSignal } from '@angular/core';
 import { Product } from '@products/components/product/product';
+import { CategoryModel } from '@products/models/category.model';
 import { ProductModel } from '@products/models/product.model';
 import { Cart } from '@shared/services/cart';
+import { Categories } from '@shared/services/categories';
 import { Products } from '@shared/services/products';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-list',
-  imports: [Product],
+  imports: [Product, RouterLinkWithHref],
   templateUrl: './list.html',
   //styleUrl: './list.css',
 })
 export class List {
   private cartService = inject(Cart);
-  private productService = inject(Products)
+  private productService = inject(Products);
+  private categoryService = inject(Categories);
+  @Input() category_id?: string;
   products: WritableSignal<ProductModel[]> = signal<ProductModel[]>([]);
+  categories: WritableSignal<CategoryModel[]> = signal<CategoryModel[]>([]);
 
-  ngOnInit() {
-    this.productService.getProducts().subscribe({
-      next: (products) =>{
+  private getProducts(category_id?:string) {
+    this.productService.getProducts(category_id).subscribe({
+      next: (products) => {
         this.products.set(products);
       },
-      error:()=>{
-
-      }
-    })
+      error: () => {},
+    });
+  }
+  private getCategories() {
+    this.categoryService.getCategories().subscribe({
+      next: (categories) => {
+        this.categories.set(categories);
+      },
+      error: () => {},
+    });
+  }
+  ngOnInit() {
+    this.getProducts();
+    this.getCategories();
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    const category_id = changes['category_id'];
+    console.log(typeof category_id)
+    console.log(category_id)
+    if (category_id && category_id.currentValue != category_id.previousValue) {
+      this.getProducts(category_id.currentValue);
+    }
   }
   addToCart(product: ProductModel) {
-    console.log('adding product')
+    console.log('adding product');
     this.cartService.addToCart(product);
   }
 }
