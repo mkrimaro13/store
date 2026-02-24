@@ -7,8 +7,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Products {
   private http = inject(HttpClient);
+  private apiUrl: string = 'https://api.escuelajs.co/api/v1/products';
   products?: ProductModel[];
-  getProducts(){
-    return this.http.get<ProductModel[]>('https://api.escuelajs.co/api/v1/products');
+  getProducts() {
+    return this.http.get<ProductModel[]>(this.apiUrl);
+  }
+  getProductById(id: string) {
+    return this.http.get<ProductModel>(`${this.apiUrl}/${id}`);
   }
 }

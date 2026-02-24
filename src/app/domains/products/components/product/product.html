@@ -1,5 +1,5 @@
 <div class="group bg-gray-400 rounded-lg border border-gray-200 transition hover:scale-105">
-  <a href="#" class="w-full overflow-hidden rounded-t-lg bg-gray-200 object-center">
+  <a [routerLink]="['/product',product.id]" class="w-full overflow-hidden rounded-t-lg bg-gray-200 object-center">
     <img
       [src]="product.images[0]"
       [alt]="product.title"

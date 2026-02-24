@@ -3,10 +3,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductModel } from '@products/models/product.model';
 import { ReversePipe } from '@shared/pipes/reverse-pipe';
 import { TimeAgoPipe } from '@shared/pipes/time-ago-pipe';
+import { RouterLinkWithHref } from "@angular/router";
 
 @Component({
   selector: 'app-product',
-  imports: [CurrencyPipe, DatePipe, TimeAgoPipe],
+  imports: [CurrencyPipe, DatePipe, TimeAgoPipe, RouterLinkWithHref],
   templateUrl: './product.html',
   //styleUrl: './product.css',
 })
