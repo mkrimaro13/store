@@ -10,14 +10,14 @@
       </summary>
 
       <div
-        class="absolute z-50 top-full mt-1 w-full max-h-[calc(100vh-10rem)] overflow-y-auto flex flex-col gap-2 p-2 rounded-smxl [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-600 [&::-webkit-scrollbar-thumb]:rounded-smfull hover:[&::-webkit-scrollbar-thumb]:bg-gray-400"
+        class="absolute z-50 top-full mt-1 w-full max-h-[calc(100vh-40rem)] overflow-y-auto flex flex-col gap-2 p-2 rounded-smxl"
       >
-          <button
-            routerLink="/"
-            class="w-full rounded-smsm border-transparent bg-transparent p-2 hover:text-black hover:bg-indigo-400 hover:border-transparent hover:scale-105 transition"
-          >
-            All
-          </button>
+        <button
+          routerLink="/"
+          class="w-full rounded-smsm border-transparent bg-transparent p-2 hover:text-black hover:bg-indigo-400 hover:border-transparent hover:scale-105 transition"
+        >
+          All
+        </button>
         @for (category of categories(); track category.id) {
           <button
             routerLink="/"
