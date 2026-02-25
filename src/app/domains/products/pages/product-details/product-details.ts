@@ -10,7 +10,7 @@ import { Cart } from '@shared/services/cart';
   templateUrl: './product-details.html',
   styleUrl: './product-details.css',
 })
-export class ProductDetails {
+export default class ProductDetails {
   @Input() id?: string;
   private productService = inject(Products);
   private cartService = inject(Cart);

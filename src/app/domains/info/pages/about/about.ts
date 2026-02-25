@@ -8,7 +8,7 @@ import { Highlight } from "@shared/directives/highlight";
   templateUrl: './about.html',
   //styleUrl: './about.css',
 })
-export class About {
+export default class About {
   duration: WritableSignal<number> = signal(15);
   message: WritableSignal<string> = signal('Hello!');
 

@@ -13,7 +13,7 @@ import { RouterLinkWithHref } from '@angular/router';
   templateUrl: './list.html',
   //styleUrl: './list.css',
 })
-export class List {
+export default class List {
   private cartService = inject(Cart);
   private productService = inject(Products);
   private categoryService = inject(Categories);
