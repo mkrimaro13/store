@@ -21,7 +21,7 @@ export class List {
   products: WritableSignal<ProductModel[]> = signal<ProductModel[]>([]);
   categories: WritableSignal<CategoryModel[]> = signal<CategoryModel[]>([]);
 
-  private getProducts(category_id?:string) {
+  private getProducts(category_id?: string) {
     this.productService.getProducts(category_id).subscribe({
       next: (products) => {
         this.products.set(products);
@@ -38,16 +38,10 @@ export class List {
     });
   }
   ngOnInit() {
-    this.getProducts();
     this.getCategories();
   }
   ngOnChanges(changes: SimpleChanges) {
-    const category_id = changes['category_id'];
-    console.log(typeof category_id)
-    console.log(category_id)
-    if (category_id && category_id.currentValue != category_id.previousValue) {
-      this.getProducts(category_id.currentValue);
-    }
+    this.getProducts(changes['category_id'].currentValue);
   }
   addToCart(product: ProductModel) {
     console.log('adding product');
